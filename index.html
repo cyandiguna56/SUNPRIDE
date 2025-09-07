@@ -136,9 +136,10 @@
             
             // Validasi sederhana
             if (username === 'admin' && password === 'sunpride123') {
-                // Login berhasil - arahkan ke halaman dashboard
+                // Login berhasil - simpan status dan arahkan ke dashboard
+                localStorage.setItem('sunpride_loggedIn', 'true');
                 alert('Login berhasil! Mengarahkan ke dashboard...');
-                window.location.href = 'dashboard.html'; // Ganti dengan halaman dashboard Anda
+                window.location.href = 'dashboard.html';
             } else {
                 // Login gagal - tampilkan pesan error
                 errorMessage.style.display = 'block';
@@ -155,6 +156,11 @@
             if (event.key === 'Enter') {
                 login();
             }
+        });
+
+        // Auto-focus pada input username
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('username').focus();
         });
     </script>
 </body>
