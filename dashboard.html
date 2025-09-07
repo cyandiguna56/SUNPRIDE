@@ -46,6 +46,10 @@
             cursor: pointer;
         }
         
+        .logout-btn:hover {
+            background-color: #555;
+        }
+        
         .container {
             max-width: 1200px;
             margin: 30px auto;
@@ -81,10 +85,16 @@
             color: #FF8C00;
             text-decoration: none;
             font-weight: bold;
+            padding: 10px 20px;
+            border: 2px solid #FF8C00;
+            border-radius: 5px;
+            transition: all 0.3s;
         }
         
         .back-link:hover {
-            text-decoration: underline;
+            background-color: #FF8C00;
+            color: white;
+            text-decoration: none;
         }
         
         .footer {
@@ -115,7 +125,7 @@
         <div class="coming-soon">
             <h2>🛠️ Dashboard dalam Pengembangan</h2>
             <p>Fitur lengkap akan segera hadir termasuk:</p>
-            <ul style="list-style: none; padding: 20px 0;">
+            <ul style="list-style: none; padding: 20px 0; line-height: 2;">
                 <li>• 📊 Grafik Distribusi Box</li>
                 <li>• 📦 Manajemen Pallet</li>
                 <li>• 📈 Laporan Produksi</li>
@@ -135,15 +145,18 @@
     <script>
         function logout() {
             if(confirm('Apakah Anda yakin ingin logout?')) {
+                localStorage.removeItem('sunpride_loggedIn');
                 window.location.href = 'index.html';
             }
         }
         
         // Cek jika user langsung akses dashboard tanpa login
-        if(!localStorage.getItem('loggedIn')) {
-            alert('Silakan login terlebih dahulu');
-            window.location.href = 'index.html';
-        }
+        document.addEventListener('DOMContentLoaded', function() {
+            if(!localStorage.getItem('sunpride_loggedIn')) {
+                alert('Silakan login terlebih dahulu');
+                window.location.href = 'index.html';
+            }
+        });
     </script>
 </body>
 </html>
